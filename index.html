@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Convexhull</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="button.css">
 <body>
     <div class="container">
         <div class="content">
@@ -15,12 +16,17 @@
                     <input type="number"  value="50" class="points-input">
                 </div>
                 <div class="button-section">
-                    <button class="start-button">Start</button>
+                    <a id="start-btn">Start</a>
                 </div>
             </div>
+            <div style="display: none;" id='myContainer'></div>
         </div>
     </div>
 </body>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+<script src="./point.js"></script>
 <script src="./index.js"></script>
-<script src="./button.js" ></script>
 </html>
