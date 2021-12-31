@@ -1,16 +1,21 @@
 var ripple = false;
 const button = document.getElementById('start-btn');
-console.log('ripple', ripple)
-var viewportHeight = window.innerHeight;
-var viewportWidth = window.innerWidth;
-let gPoints;
+
+var gPoints = [];
 let isCanvasOn = false;
 let hull = [];
 let refresh = true;
-// Initialize Result
+
+class Point {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+}
+
+
 button.addEventListener('mouseover', function(e) {
     if(!ripple) {
-        console.log(ripple);
         let x = e.clientX - e.target.offsetLeft;
         let y = e.clientY - e.target.offSetTop;
     
@@ -22,11 +27,17 @@ button.addEventListener('mouseover', function(e) {
     }
 })
 
+button.addEventListener('mouseleave', function(e) {
+    if(ripple) {
+        ripple = null;
+    }
+})
 
 button.addEventListener('click', function(e) {
+    const points = document.querySelector('.points-input').value;
     $('.start-popup').css('display', 'none');
     $('#myContainer').css('display', 'block');
-    gPoints = generatePoints(50);
+    gPoints = generatePoints(points || 10);
     isCanvasOn = true;
 
     setup();
@@ -34,23 +45,20 @@ button.addEventListener('click', function(e) {
 })
 
 function setup() {
-        let myCanvas = createCanvas(viewportWidth,  viewportHeight);
+        const myCanvas = createCanvas(window.innerWidth,   window.innerHeight);
         myCanvas.parent('myContainer');
 }
 
 function generatePoints(n) {
     const arrayOfPoints = [];
     for(let i = 0; i<n; i++) {
-        let x = getRandomArbitrary(300, viewportWidth-300);
-        let y = getRandomArbitrary(300, viewportHeight-300);
-
+        let x = getRandomArbitrary(300, window.innerWidth-300);
+        let y = getRandomArbitrary(300, window.innerHeight-300);
         let point = new Point(x,y);
         arrayOfPoints.push(point)
     }
     return arrayOfPoints;
 }
-
-let i = 0;
 
 async function draw() {
     if(isCanvasOn && refresh) {
@@ -66,8 +74,7 @@ async function draw() {
 
 const main = () => {
     drawPoints();
-    const points = [...gPoints];
-    const hull = getHull();
+    getHull();
 }
 
 
@@ -130,7 +137,7 @@ async function convexHull(points, n)
     
             // Add current point to result
             hull.push(points[p]);
-            await sleep(500);
+            await sleep(200);
             refresh = false;
             await sleep(50);
             
@@ -147,7 +154,7 @@ async function convexHull(points, n)
                // If i is more counterclockwise than
                // current q, then update q
                line(points[p].x, points[p].y, points[i].x, points[i].y);
-               await sleep(50);
+               await sleep(10);
                if (orientation(points[p], points[i], points[q]) === 2)
                    q = i;
             }
