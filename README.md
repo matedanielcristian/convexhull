@@ -1,7 +1,7 @@
 # convexhull
 ### Online project here: https://matedanielcristian.github.io/convexhull/
 
-This was a project for Computational Geometry.
+This was a project for Computational Geometry class.
 
 I used [p5js](https://p5js.org/) for drawing in canvas.
 
