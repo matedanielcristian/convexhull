@@ -4,14 +4,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.start-popup {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-a {
+button#start-btn {
     position: relative;
     display: inline-block;
     padding: 12px 36px;
@@ -24,30 +17,8 @@ a {
     border-radius: 40px;
     background: linear-gradient(90deg, #0163c8, #55e7fc);
     overflow: hidden;
+    border-width: 0px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-    box-shadow: rgb(77, 46, 0)
-}
-
-
-span {
-    position:absolute;
-    background: white;
-    transform: translate(-50%,-50%);
-    pointer-events: none;
-    border-radius: 50%;
-    animation: animate 1s linear;
-}
-
-@keyframes animate {
-    0% {
-        width: 0px;
-        height: 0px;
-        opacity: 0.5;
-    } 
-
-    100% {
-        width: 500px;
-        height: 500px;
-        opacity: 0;
-    }
+    box-shadow: rgb(77, 46, 0);
+    cursor: pointer;
 }
