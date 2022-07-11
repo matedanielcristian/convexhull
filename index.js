@@ -1,24 +1,26 @@
 const startBtn = document.getElementById('start-btn');
-var generatedPoints = [];
 const convexHull = [];
+let generatedPoints = [];
 let refresh = true;
 let isCanvasOn = false;
 let ripple = false;
 
-
-
-startBtn.addEventListener('click', function (e) {
+function onStart (e) {
     e.preventDefault();
-
     const points = document.querySelector('.points-input').value;
+    if (parseInt(points) < 3 || parseInt(points) > 1000) {
+        alert('Incorrect input (points). Should be in [3-1000] range');
+        return;
+    }
     $('.start-popup').css('display', 'none');
-    $('#myContainer').css('display', 'block');
-    generatedPoints = [...generatePoints(parseInt(points) || 10)];
+    $('#canvasContainer').css('display', 'block');
+    generatedPoints = [ ...generatePoints(parseInt(points) || 10) ];
     isCanvasOn = true;
 
     setup();
     main();
-})
+    return false;
+}
 
 class Point {
     constructor(x, y) {
@@ -29,7 +31,7 @@ class Point {
 
 function setup () { // setup canvas
     const myCanvas = createCanvas(window.innerWidth, window.innerHeight);
-    myCanvas.parent('myContainer');
+    myCanvas.parent('canvasContainer');
 }
 
 function generatePoints (n) {
@@ -56,15 +58,10 @@ async function draw () {
 
 const main = () => {
     drawPoints();
-    getHull();
-}
-
-
-
-function getHull () {
     const points = [ ...generatedPoints ];
     getConvexHull(points, points.length);
 }
+
 
 const drawPoints = () => {
     for (let i = 0; i < generatedPoints.length; i++) {
@@ -97,7 +94,6 @@ function orientation (p, q, r) {
 }
 
 async function getConvexHull (points, n) {
-    console.log('points', points, 'n', n);
     await sleep(50);
     // There must be at least 3 points
     if (n < 3) {

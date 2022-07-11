@@ -7,24 +7,23 @@
     <title>Convexhull</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="button.css">
-
 <body>
     <div class="container">
         <div class="content">
             <div class="start-popup">
                 <form>
                     <div class="number-of-points">
-                        <label>Points:</label>
-                        <input type="number" name="points" value="50" class="points-input" max="1000" min="3">
+                        <sup>bw[3-1000]</sup>
+                        <label for="points">Points:</label>
+                        <input placeholder="Please enter a number" type="number" name="points" value="50" class="points-input" max="1000" min="3">
                     </div>
                     <div class="button-section">
-                        <label>Algoritm:</label>
-                        <button id="start-btn" type="submit">Jarvis</button>
+                        <label for="start-btn">Algoritm:</label>
+                        <button type="submit" id="start-btn" onclick="onStart(event)">Javris</button>
                     </div>
                 </form>
             </div>
-            <div style="display: none;" id='myContainer'></div>
+            <div style="display: none;" id='canvasContainer'></div>
         </div>
     </div>
 </body>
